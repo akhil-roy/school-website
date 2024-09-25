@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- section -->
+<section class="main_full inner_page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="full" style="word-spacing: 20px;">
+        <h3>Godavari Foundation</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+
+<!-- breadcrumb section -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item"><a href="about">About</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About Foundation</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+
+<!-- foundation -->
+<section class="section margin_top_30">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-7 Welcome-area-text">
+        <div class="row">
+          <div class="col-sm-12 section-header-box">
+            <div class="section-header section-header-l text-center js-scroll fade-in">
+              <h3><span style="color: #4886ff;">Godavari Foundation</span></h3>
+            </div>
+          </div>
+        </div>
+        <p class="js-scroll fade-in-bottom text-justify">Godavari Foundation was established in 1993 by
+          Dr.Ulhas Patil, with a mandate to “serve the needs of the common peoples & societies in the Jalgaon Area of
+          North Maharashtra”. Godavari Foundation is registered organization vide registration no. F-2246 (Jalgaon)
+          dated 12/08/93 under Mumbai Public Charity Act -1950 and MAH / 2406 / Jalgaon dated 2/04/93 under Societies
+          Registration Act – 1860. The Foundation was established on the encouragement and inspiration from their mother
+          & in the name of Smt.Godavari Vasudeo Patil (A Retired Teacher). Since 1993 & till to date the foundation has
+          been rendering & imparting it’s services in Education, Medical Relief, Religious, Cultural and Social projects
+          & in various sectors as required by society under able guidance of Smt.Godavari V. Patil.</p>
+      </div>
+
+      <div class="col-sm-12 col-md-5 f_logo js-scroll fade-in-bottom" style="width: 75%;">
+        <img src="{{ url_for('static', filename='images/Godavari_logo.png')}}" style="border-radius: 50%;"
+          alt="Godavari logo" class="img-responsive">
+        <h4 class="text-center">Godavari Foundation</h4>
+      </div>
+      <div class="col-sm-12 text-justify js-scroll fade-in-bottom">
+        <p>After getting well reputation in their educational projects in all over North Maharashtra, Dr.Ulhas Patil
+          established an unique network of educational institutions to provide job oriented Technical & Management
+          education & though the view of imparting high quality professional education to create a pool of
+          professionally qualified and skilled students to meet the growing needs of trade and industry in Today’s
+          Competitive World.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+
+<!-- management -->
+<section class="section mt-4 mb-4">
+  <div class="container bg_fill shape_div2">
+    <div class="mtb">
+      <div>
+        <h3 style="text-align: center;" class="mb-5 js-scroll fade-in-bottom">Foundation Management</h3>
+      </div>
+      <div class="row js-scroll fade-in mt-4 p-5 center">
+        <div>
+          <div class="col-sm-12">
+            <div class="text-center">
+              <img src="{{ url_for('static', filename='images/president.jpg')}}" alt="" width="600px" height="500px" style="border-radius: 20px;" class="cover">
+              <h4 class="mb-0">Dr.Ulhas Patil</h4>
+              <strong class="mt-0" style="color:aliceblue">MD(Gyneac)</strong>
+              <p style="font-size: 16px;">Former Member of Parliament</p>
+            </div>
+          </div>
+          
+          <div class="rest_manage mt-3">
+            <div class="col-lg-4">
+              <div class="text-center">
+                <img src="" alt="" width="300px" height="250px" class="cover">
+                <h5>name</h5>
+                <p style="font-size: 14px;">position</p>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="text-center">
+                <img src="" alt="" width="300px" height="250px">
+                <h5>name</h5>
+                <p style="font-size: 14px;">position</p>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="text-center">
+                <img src="" alt="" width="300px" height="250px">
+                <h5>name</h5>
+                <p style="font-size: 14px;">position</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

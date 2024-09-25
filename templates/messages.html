@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- section -->
+<section class="main_full inner_page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="full text-center">
+                <h3>Messages</h3>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end section -->
+
+<!-- breadcrumb section -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="./">Home</a></li>
+                        <li class="breadcrumb-item"><a href="about">About</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Messages</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end section -->
+
+<!-- management section -->
+<section class="section" style="padding: 90px 0px;">
+    <div class="container" style="margin-bottom: 110px;">
+        <h2 class="text-center js-scroll fade-in-bottom">Chairman's Message</h2>
+        <div class="margin_top_40 margin_bottom_30 messages">
+            <div class="fig-image mr-3 mb-2">
+                <figure class="mb-5 text-center js-scroll fade-in-bottom"><img class=""
+                        src="{{ url_for('static', filename='images/president2.jpg')}}"
+                        style="height: 400px; width: 400px; border-radius: 20px;"></figure>
+                <figcaption class="text-center js-scroll fade-in-bottom">
+                    <h3>Dr. Ulhas Patil</h3>
+                    <h5><strong>Chairman</strong></h5>
+                    <p class="text-center">Godavari Foundation</p>
+                </figcaption>
+            </div>
+            <p style="width: 100%;" class="js-scroll fade-in-bottom">The essential purpose of any educational
+                institution is
+                to deliver a learning atmosphere which brings out the
+                best in the students. At DUPEMS, we make available a
+                learning atmosphere that enthuses and inspires
+                children, and encourages them to discover
+                immeasurable potentials in their pursuit for knowledge.
+                Since inception, our predominant goal has been to make
+                DUPEMS a happy school, where teaching is a pleasure
+                and learning is a joy; where learning and excelling is a passion, and beliefs and
+                values have a dominant place.
+            </p>
+            <p style="width: 100%;" class="js-scroll fade-in-bottom">DUPEMS believe that every child is gifted with an
+                inimitable set of qualities and
+                aptitudes, which need to be fostered so that they bloom. Therefore, every child
+                deserves an education that nurtures academic excellence and all-round
+                development, and ensures their welfare. We are inspired by these doctrines in everything that we do at DUPEMS. </p>
+            <p style="width: 100%;" class="js-scroll fade-in-bottom">The caring and devoted teachers are our pillars of
+                strength. They teach not
+                just with their minds but with their hearts. They make learning enjoyable and
+                rewarding. They inculcate moral, ethical and cultural values in children that would
+                make them good human beings. The educational programmes provided at
+                DUPEMS are excellent and facilitates children's holistic development.
+                Our accomplishments over the past 28 years since our inception in 2001 and our
+                reputation as one of the best schools epitomise the success of our educational
+                model. We are a school with an Indian mind, an Indian heart and an Indian soul. All
+                these inspire us to continue to do our best, in preparing children for the 21st
+                century. </p>
+            <p style="width: 100%;" class="js-scroll fade-in-bottom">I cordially invite you to explore DUPEMS as we
+                re-dedicate ourselves every day, to
+                impart the very best education to young minds.
+            </p>
+        </div>
+        <hr>
+        <h2 class="text-center js-scroll fade-in-bottom">Principal's Message</h2>
+        <div class="margin_top_40 margin_bottom_30 messages">
+            <div class="fig-image-right ml-3 mb-2">
+                <figure class="text-center mb-5 js-scroll fade-in-bottom"><img class="cover"
+                        src="{{ url_for('static', filename='images/principal.jpg')}}"
+                        style="height: 270px; width: 270px; border-radius: 20px;"></figure>
+                <figcaption class="text-center js-scroll fade-in-bottom" style="z-index: 99;">
+                    <h3>Mrs. Bharti Mahajan</h3>
+                    <h5><strong>Principal</strong></h5>
+                    <p class="text-center">Dr.Ulhas Patl English Medium School</p>
+                </figcaption>
+            </div>
+            <p style="width: 100%;" class="js-scroll fade-in-bottom">Dr.Ulhas Patil English Medium Shool Savda, since
+                its inception, remains to be an extraordinary institution with one common purpose: building and
+                empowering individuals to succeed. At DUPEMS, we provides a uniquely inclusive education that goes
+                beyond grades to develop all-round academic excellence by building resilient minds and encouraging
+                positive, multicultural perspectives. Our motive is to equip our students with confidence and
+                resourcefulness that prepares them to grow, thrive and find their success in a fast-changing world.</p>
+            <p style="width: 100%;" class="js-scroll fade-in-bottom">DUPEMS vows to continually strive and instil an
+                intrinsic desire in the students as to always strive to meet the high expectations they have set for
+                themselves no matter what their goals are. Our school is envisioned to offer an all-inclusive,learnin e
+                individual excellence that will inspire our students to turn into lifelong learners. I am looking forward
+                to another amazing year ahead. </p>
+        </div>
+    </div>
+</section>
+<!-- end mangement section -->
+
+{% endblock %}
