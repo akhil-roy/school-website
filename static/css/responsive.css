@@ -832,6 +832,15 @@ button.navbar-toggler span:nth-child(1) {
         padding: 0;
         width: 100%;
     }
+    .photo{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .photo:last-child{
+        flex-direction: column-reverse;
+    }
+    
     .logo {
         width: 100%;
         margin-top: 25px;

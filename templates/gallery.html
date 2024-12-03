@@ -48,7 +48,7 @@
  <style>
     /* Style the buttons */
 
-.btn {
+.filterbtn {
   border: none;
   outline: none;
   padding: 12px 16px;
@@ -56,90 +56,237 @@
   cursor: pointer;
 }
 
-.btn:hover {
+.filterbtn:hover {
   background-color: #ddd;
 }
 
-.btn.active {
+.filterbtn.active {
   background-color: #1064d8;
   color: white;
 }
 .hide{
     display:none;
 }
+
+.video-title { 
+    text-align: center;
+    margin-top: 10px; 
+    font-weight: bold; 
+} 
+.video-wrapper { 
+    margin-bottom: 20px; 
+}
  </style>
 <!-- gallery section -->
-<div class="container">
+<div class="container mb-5">
     <div class="myBtnContainer text-center">
-        <button class="btn active" data-name="all"> Show all</button>
-        <button class="btn" data-name="academics"> Academics</button>
-        <button class="btn" data-name="departments"> Departments</button>
-        <button class="btn" data-name="events"> Events</button>
-        <button class="btn" data-name="infrastructure"> Infrastructure</button>
-        <button class="btn" data-name="sports"> Sports</button>
+        <button class="btn filterbtn active" data-name="all"> Show all</button>
+        {% for category, files in images.items() %}
+        <button class="btn filterbtn" data-name="{{category}}"> {{category}}</button>
+        {% endfor %}
     </div>
 </div>
-<section class="gallery-block grid-gallery align-self-center">
-    <div class="container align-self-center">
-        <div class="row gall-images js-scroll fade-in align-self-center">
-            {% for name in acad_images %}
-            <div class="col-sm-6 col-md-4 col-lg-3 item " data-name="academics">
-                <a class="iimage_shadow3" href="{{ url_for('static', filename='images/gallery/academics/' + name) }}" data-lightbox="school" data-title="Academics">
-                    <img class="img-fluid image scale-on-hover" src="{{ url_for('static', filename='images/gallery/academics/' + name) }}">
-                </a>
+{% for category, files in images.items() %}
+
+    <div class="container align-self-center categoryhead" data-name="{{category}}">
+        <div class="d-flex justify-content-around flex-row-reverse">
+            {% if current_user.is_authenticated %}
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#uploadto{{category}}">
+                <i class="fa-regular fa-trash-can"></i>Upload Images
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="uploadto{{category}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload images to {{category}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" class="text-center mb-5 p-5">
+                            <input type="hidden" id="category" name="category" value="{{category}}">
+                            <br><br>
+                            <input class="form-control-file" type="file" name="files" id="files" multiple required>
+                            <br><br>
+                            <button class="btn btn-outline-success p-1" type="submit">Upload to {{category  }}</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
-            {% for name in depart_images %}
-            <div class="col-sm-6 col-md-4 col-lg-3 item " data-name="departments">
-                <a class="iimage_shadow3" href="{{ url_for('static', filename='images/gallery/departments/' + name) }}" data-lightbox="school" data-title="Departments">
-                    <img class="img-fluid image scale-on-hover" src="{{ url_for('static', filename='images/gallery/departments/' + name) }}">
-                </a>
+            {% endif %}
+            <h3 class="text-uppercase ">{{category}}</h3>
+            {% if current_user.is_authenticated %}
+            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#{{category}}Modal">
+                <i class="fa-regular fa-trash-can"></i> Delete
+            </button>
+        
+            <!-- Modal -->
+            <div class="modal fade" id="{{category}}Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Delete {{category}}?</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Note that Once deleted, category cannot be restored. Category can only be deleted when it is empty. </h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="{{ url_for('delete_category', category=category) }}" method="post">
+                            <button class="btn btn-outline-danger" type="submit">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
-            {% for name in image_names %}
-            <div class="col-sm-6 col-md-4 col-lg-3 item ">
-                <a class="iimage_shadow3" href="{{ url_for('static', filename='images/gallery/others/' + name) }}" data-lightbox="school" data-title="School">
-                    <img class="img-fluid image scale-on-hover" src="{{ url_for('static', filename='images/gallery/others/' + name) }}">
-                </a>
+            {% endif %}
+        </div>
+        <section class="gallery-block grid-gallery align-self-center">
+            <div class="container align-self-center">
+                <div class="row  js-scroll fade-in align-self-center">
+                    {% for file in files %}
+                    {% set name = file.split('.')[0] %}
+                    <div class="col-sm-6 col-md-4 col-lg-3 item ">
+                        <a class="iimage_shadow3" href="{{ url_for('static', filename='uploads/images/' + category + '/' + file) }}" data-lightbox="school" {% if category == "departments" %} data-title="{{name}}" {% else %} data-title="{{category}}" {% endif %}>
+                            <img class="img-fluid image scale-on-hover" src="{{ url_for('static', filename='uploads/images/' + category + '/' + file) }}">
+                        </a>
+                        {% if category == "departments" %}
+                        <h6 class="text-center">{{name}}</h6>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#Modal{{name}}">
+                            <i class="fa-regular fa-trash-can"></i>Delete 
+                        </button>
+        
+                        <!-- Modal -->
+                        <div class="modal fade" id="Modal{{name}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete {{name}}?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>Note that Once deleted, image cannot be restored. </h3>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <form action="{{ url_for('delete_file', category=category, filename=file) }}" method="post">
+                                            <button class="btn btn-outline-danger" type="submit">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
-            {% for name in even_images %}
-            <div class="col-sm-6 col-md-4 col-lg-3 item " data-name="events">
-                <a class="iimage_shadow3" href="{{ url_for('static', filename='images/gallery/events/' + name) }}" data-lightbox="school" data-title="Events">
-                    <img class="img-fluid image scale-on-hover" src="{{ url_for('static', filename='images/gallery/events/' + name) }}">
-                </a>
+        </section>
+        
+        
+
+    </div>
+   
+{% endfor %}
+{% if current_user.is_authenticated %}
+<div class="container">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#createcategory">
+        <i class="fa-regular fa-trash-can"></i>Create New Category
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            {% endfor %}
-            {% for name in infra_images %}
-            <div class="col-sm-6 col-md-4 col-lg-3 item " data-name="infrastructure">
-                <a class="iimage_shadow3" href="{{ url_for('static', filename='images/gallery/infrastructure/' + name) }}" data-lightbox="school" data-title="Infrastructure">
-                    <img class="img-fluid image scale-on-hover" src="{{ url_for('static', filename='images/gallery/infrastructure/' + name) }}">
-                </a>
+            <div class="modal-body">
+                <h1 class="text-center">Create Category</h1>
+                <form action="{{ url_for('create_category') }}" method="post" class="p-5 text-center">
+                    <label class="form-label" for="category">Category Name:</label>
+                    <input class="form-control-file" type="text" name="category" id="category" required>
+                    <br><br>
+                    <button class="btn btn-outline-success p-1" type="submit">Create Category</button>
+                </form>
             </div>
-            {% endfor %}
-            {% for name in sport_images %}
-            <div class="col-sm-6 col-md-4 col-lg-3 item " data-name="sports">
-                <a class="iimage_shadow3" href="{{ url_for('static', filename='images/gallery/sports/' + name) }}" data-lightbox="school" data-title="Sports">
-                    <img class="img-fluid image scale-on-hover" src="{{ url_for('static', filename='images/gallery/sports/' + name) }}">
-                </a>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
-    <hr>
-    <section class="m-5 w-100">
-        <div class="text-center js-scroll fade-in-bottom">
-            <h3>Our Videos</h3>
-        </div>
-        <div class="container row justify-content-between">
-            <div class="m-2 js-scroll fade-in-bottom">
-                <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FDr.Upemssavda%2Fvideos%2F489272196714808%2F&show_text=false&width=560&t=0" width="100%" height="100%" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+</div>
+{% endif %}
+<hr>
+<hr>
+<section class="m-5 w-100">
+    <div class="container">
+        <h1 class="my-4 text-center">Video Gallery</h1>
+        {% if current_user.is_authenticated %}
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#uploadvideo">
+            <i class="fa-regular fa-trash-can"></i>Upload new Videos
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="uploadvideo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload new videos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1 class="text-center">Upload videos</h1>
+                    <form action="{{ url_for('upload_video') }}" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file">
+                        <input type="submit" value="Upload">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
             </div>
-            <div class="m-2 js-scroll fade-in-bottom">
-                <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FDr.Upemssavda%2Fvideos%2F3364557430469885%2F&show_text=false&width=560&t=0" width="100%" height="100%" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-            </div>
         </div>
-    </section>
-    
+        {% endif %}
+        <div class="row">
+
+            {% for video in videos %}
+            <div class="col-md-4">
+                <video width="320" height="240" controls>
+                    <source src="{{ url_for('uploaded_file', filename=video) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                {% if current_user.is_authenticated %}
+                <a class="btn btn-outline-danger" href="{{ url_for('delete_video', filename=video) }}">Delete</a>
+                {% endif %}
+            </div>
+            {% if loop.index % 3 == 0 %}
+            </div><div class="row">
+            {% endif %}
+        {% endfor %}       
+
+        </div>
+    </div>
 </section>
 {% endblock %}

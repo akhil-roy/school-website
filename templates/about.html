@@ -1,5 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<style>
+  .photo{
+    background-image: url('static/images/patternpad-2024-11-29-12-19-37.svg');
+  }
+  .photo:nth-child(1){
+    box-shadow: -20px 20px 8px rgba(12, 26, 51, 0.492);
+    
+  }
+  .photo:nth-child(2){
+    box-shadow: 20px 20px 8px rgba(12, 26, 51, 0.492);
+    
+  }
+  .photo .text{
+    background-color: rgba(255,255,255,0.6);
+  }
+  .photo .title{
+    font-family: "Oswald", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    
+  }
+</style>
+
    <!-- section -->
    <section class="main_full inner_page">
       <div class="container-fluid">
@@ -37,17 +61,14 @@
             <div class="row">
               <div class="col-sm-12 section-header-box">
                 <div class="section-header section-header-l js-scroll fade-in-bottom">
-                  <h2>Godavari Foundation’s<br><span style="color: #4886ff;">Dr. Ulhas Patil English Medium School</span></h2>
+                  <h2>Godavari Foundation’s<br><span style="color: #4886ff;">Dr. Ulhas Patil English Medium CBSE School</span></h2>
                 </div>
               </div>
-              <p class="large text-justify js-scroll fade-in-bottom pr-2 pl-2">The Journey Of Dr. Ulhas Patil English Medium School, Savda Began In 2001 Under The Inspiration Of Our Respected Godavari Aai Along With The Far-sighted Vision Of Our Chairman Honourable Dr. Ulhas Pail Who Has Constantly Nurtured This School Under His Dynamic Leadership And An Overwhelming Personality.</p>
-              <p class="large text-justify js-scroll fade-in-bottom pr-2 pl-2">Dr. Ulhas Patil English Medium School Is Part Of Godavari Foundaiton Which Was Established With The Aim Of Promoting Quality Education To The Students. The School Focuses On Holistic Development Of The Children By Engaging Them In Active Learning, Ensuring Commitment.</p>
+              <p class="large text-justify js-scroll fade-in-bottom pr-2 pl-2">The Journey Of Dr. Ulhas Patil English Medium CBSE School, Savda Began In 2001 Under The Inspiration Of Our Respected Godavari Aai Along With The Far-sighted Vision Of Our Chairman Honourable Dr. Ulhas Pail Who Has Constantly Nurtured This School Under His Dynamic Leadership And An Overwhelming Personality.</p>
+              <p class="large text-justify js-scroll fade-in-bottom pr-2 pl-2">Dr. Ulhas Patil English Medium CBSE School Is Part Of Godavari Foundaiton Which Was Established With The Aim Of Promoting Quality Education To The Students. The School Focuses On Holistic Development Of The Children By Engaging Them In Active Learning, Ensuring Commitment.</p>
             </div>
           </div>
           
-          <!-- <div class="col-sm-12 col-md-6 js-scroll welcome-imgs fade-in-bottom">
-            <img style="width: 100%;border-radius: 20px;object-fit: cover;" src="{{ url_for('static', filename='images/school.jpg')}}" alt="GFDUPEMS" class="iimage_shadow1">
-          </div>          -->
           <div class="col-sm-12 col-md-6 welcome-img js-scroll slide-right">
             <div class="welcome-imgs">
                <img src="{{ url_for('static', filename='images/n.jpg')}}" alt="GFDUPEMS" class="iimage-shadow1 img-responsive">
@@ -66,41 +87,57 @@
    <section class="mt-5">
       <div class="container">
           <div class="row">
-              <div class="">
+              <div class="position-relative">
                   <div class="title text-center margin_bottom_30 js-scroll fade-in">
                       <h1>Vision & Mission</h1>
                       <p></p>
                   </div>
-                  <div style="line-height: 30px;" class="m-5">
+                  <div style="line-height: 30px;" class="m-5 position-relative">
                       <div class="photo col-12 row iimage_shadow2 mt-5 mb-5 pt-3 pb-3 justify-content-center" style="width:100%;">
-                          <div class="col-3 js-scroll fade-in d-flex align-items-center" style="min-width: 85px;">
-                            <img src="{{ url_for('static', filename='images/cour2.png')}}" width="100%">
+                          <div class="img col-3 js-scroll fade-in d-flex align-items-center justify-content-center">
+                            <img src="{{ url_for('static', filename='images/watch_13170041 (1).png')}}">
                           </div>
   
-                          <div class="col-9 js-scroll fade-in" >
-                            <h4 class="title text-center">Our Vision</h4>
-                          <p class="text-justify"><strong>Our vision is to be a leading school, nurturing the students of 
-                            noble rank traditions, culture and democratic ideals to contribute 
-                            Toactively in homes and families. </strong></p>
+                          <div class="text  col-9 js-scroll fade-in" >
+                            <h4 class="title text-uppercase text-center">Our Vision</h4>
+                          <p class="text-justify"><strong>At DUPEMSS we unleash the innate excellence in every child by challenging, 
+                            Motivating and Inspiring to achieve their highest potentials and contributing 
+                            better citizens as a Hall Mark of DUPEMSS.</strong></p>
                           </div>
                           
                       </div>
   
                       <div class="photo col-12 row flex-wrap-reverse justify-content-center iimage_shadow2 mt-5 mb-5 pt-3 pb-3">
                         
-                        <div class="col-9 js-scroll fade-in">
-                          <h4 class="title text-center">Our Mission</h4>
-                        <p class="text-justify"> <strong>Our mission is to provide every student an ideal learning 
-                          environment of intellectual rigour and high academic standards for the 
-                          holistic and integrated development of our students. We promise to do the 
-                          almost possible efforts to equipour students for lifelong challenges and 
-                          opportunity. </strong></p>
+                        <div class=" text col-9 js-scroll fade-in">
+                          <h4 class="title text-uppercase text-center">Our Mission</h4>
+                        <p class="text-justify"> <strong>Misson at DUPEMSS is to foster a learning environment of Natural Progression
+                           of a child's view not only in Academics but in Innovation, Exploration and Sculpt our students into true scholars.</strong></p>
                         </div>
                           
-                          <div class="col-3 js-scroll fade-in d-flex align-items-center" style="min-width: 85px;">
-                            <img src="{{ url_for('static', filename='images/cour1.png')}}" width="100%">
-                          </div>
+                        <div class="img col-3 js-scroll fade-in d-flex align-items-center justify-content-center">
+                          <img src="{{ url_for('static', filename='images/game_13132635 (1).png')}}" style="transform: rotate(180deg);">
+                        </div>
                       </div>
+                      <div class="icons icon-1 animate__bounce">
+                        <img src="static/images/icons/1.png" width="40px" height="40px" alt="">
+                    </div>
+                    
+                    <div class="icons icon-2">
+                        <img src="static/images/icons/4.png" width="40px" height="40px" alt="">
+                    </div>
+                    
+                    <div class="icons icon-3">
+                        <img src="static/images/icons/5.png" width="40px" height="40px" alt="">
+                    </div>
+                    
+                    <div class="icons icon-4">
+                        <img src="static/images/icons/6.png" width="40px" height="40px" alt="">
+                    </div>
+                    
+                    <div class="icons icon-5">
+                        <img src="static/images/icons/8.png" width="40px" height="40px" alt="">
+                    </div>
                   </div>
                   <hr class="line">
               </div>
@@ -112,14 +149,14 @@
     <div class="container">
       <div class="">
           <h1 class="title text-center js-scroll fade-in">Our Objectives</h1>
-        <div class="sfees js-scroll fade-in p-3">
+        <div class="sfees js-scroll fade-in p-3 px-5">
           <ul>
             <li>
-              <p>To impart progressive and quality education suited to the changing, needs and aspirations of our time. </p>
+              <p>To impart progressive and quality education suited to the changing needs and aspirations of our time. </p>
             </li>
             <li>
               <p>To encourage the students to analyse and evaluate their experienceg
-                learn to doubt, to question, to investigate' and to think independently. 
+                learn to doubt, to question, to investigate and to think independently. 
                 </p>
             </li>
             <li>
@@ -127,7 +164,7 @@
                 of the social realities. </p>
             </li>
             <li>
-              <p>To develop children's character and personality through persona]
+              <p>To develop children's character and personality through personal
                 guidance. </p>
             </li>
             <li>

@@ -1,6 +1,6 @@
 const scrollElements = document.querySelectorAll(".js-scroll");
 const filterButtons = document.querySelectorAll(".myBtnContainer button");
-const filterableImages = document.querySelectorAll(".gall-images .item");
+const categoryHead = document.querySelectorAll(".categoryhead");
 
 const elementInView = (el, dividend = 1) => {
   const elementTop = el.getBoundingClientRect().top;
@@ -43,14 +43,14 @@ window.addEventListener("scroll", () => {
 });
 
 const filterimages = e =>{
-  e.preventDefault()
+  e.preventDefault();
   document.querySelector(".myBtnContainer .active").classList.remove("active");
   e.target.classList.add("active");
-  filterableImages.forEach(item =>{
-      item.classList.add("hide");
-      if(item.dataset.name === e.target.dataset.name || e.target.dataset.name === "all"){
-          item.classList.remove("hide");
-      }
+  categoryHead.forEach(item=>{
+    item.classList.add("hide");
+    if(item.dataset.name === e.target.dataset.name || e.target.dataset.name === "all"){
+      item.classList.remove("hide");
+    }
   });
 };
 filterButtons.forEach(button => button.addEventListener("click",filterimages));
@@ -73,4 +73,23 @@ $(this).prop('Counter',0).animate({
 
 });  
 
+// Get the button
+let mybutton = document.getElementById("backToTopBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 

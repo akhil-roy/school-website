@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+  .rest_manage > div > div {
+    background: linear-gradient(to bottom,rgb(225, 231, 230),transparent);
+    border-radius: 25px;
+    padding-top: 10px;
+  }
+  .rest_manage > div > div >img{
+    filter: drop-shadow(rgb(45, 45, 45) -0.01rem -0.4rem 1px);
+    object-fit: contain;
+  }
+</style>
+
 <!-- section -->
 <section class="main_full inner_page">
   <div class="container-fluid">
@@ -91,28 +103,29 @@
           <div class="rest_manage mt-3">
             <div class="col-lg-4">
               <div class="text-center">
-                <img src="" alt="" width="300px" height="250px" class="cover">
-                <h5>name</h5>
-                <p style="font-size: 14px;">position</p>
+                <img src="{{ url_for('static', filename='images/varsha patil.png')}}" alt="" width="300px" height="250px" >
+                <h5>Dr. Varsha Ulhas Patil</h5>
+                <p style="font-size: 14px;">M.B.B.S D.G.O</p>
               </div>
             </div>
             
             <div class="col-lg-4">
               <div class="text-center">
-                <img src="" alt="" width="300px" height="250px">
-                <h5>name</h5>
-                <p style="font-size: 14px;">position</p>
+                <img src="{{ url_for('static', filename='images/subhash patil.png')}}" alt="" width="300px" height="250px">
+                <h5>Dr. Subhash Patil</h5>
+                <p style="font-size: 14px;">M.Sc.</p>
               </div>
             </div>
             
             <div class="col-lg-4">
               <div class="text-center">
-                <img src="" alt="" width="300px" height="250px">
-                <h5>name</h5>
-                <p style="font-size: 14px;">position</p>
+                <img src="{{ url_for('static', filename='images/godavari aai.png')}}" alt="" width="300px" height="250px">
+                <h5>Smt. Godavari Vasudeo Patil</h5>
+                <p style="font-size: 14px;">Retired H.Mistress</p>
               </div>
             </div>
           </div>
+         </div>
         </div>
       </div>
     </div>
