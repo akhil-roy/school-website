@@ -7,7 +7,7 @@ from flask_bcrypt import Bcrypt
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
-app.config.from_object('config.DevConfig')
+app.config.from_object('config.ProdConfig')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
