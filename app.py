@@ -2,14 +2,18 @@ import os
 from flask import Flask,flash , render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user
+from flask_bcrypt import Bcrypt 
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 app.config.from_object('config.DevConfig')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+hashed_password = bcrypt.generate_password_hash(app.config['ADMIN_P']).decode('utf-8')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
@@ -21,7 +25,7 @@ class User(UserMixin):
     def __init__(self, id):
         self.id = id
         self.username = app.config['ADMIN_U']
-        self.password = app.config['ADMIN_P']  # In a real app, use hashed passwords
+        self.password = hashed_password  # In a real app, use hashed passwords
 
     def is_authenticated(self):
         return True
@@ -44,7 +48,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == app.config['ADMIN_U'] and password == app.config['ADMIN_P']:
+        if username == app.config['ADMIN_U'] and bcrypt.check_password_hash(hashed_password, password) :
             user = User(id=1)
             login_user(user)
             return redirect(url_for('gallery'))
