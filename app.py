@@ -167,4 +167,4 @@ def contact():
     return render_template('contact.html')
 
 if __name__=="__main__":
-    app.run(debug=app.config['FLASK_DEBUG'])
+    app.run(host='0.0.0.0',debug=app.config['FLASK_DEBUG'])
