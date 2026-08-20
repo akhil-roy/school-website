@@ -21,6 +21,13 @@ def allowed_file(filename):
 if not os.path.exists(app.config['UPLOAD_FOLDER_VIDEO']):
     os.makedirs(app.config['UPLOAD_FOLDER_VIDEO'])
 
+@app.context_processor
+def inject_ad_data():
+    ad_data = {
+        'target_link': 'https://www.ecell.in/necjunior/register'
+    }
+    return dict(ad=ad_data)
+
 class User(UserMixin):
     def __init__(self, id):
         self.id = id
