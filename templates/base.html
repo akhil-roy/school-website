@@ -7,7 +7,7 @@
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Site Metas -->
-        <title>DUPEMS</title>
+        <title>{% block title %}{% endblock %}</title>
         <meta name="keywords" content="English , medium , CBSE , School , Savda , Ulhas , Patil , godavari , foundation">
         <meta name="description" content="Dr. Ulhas Patil English Medium CBSE School Is a CBSE school located in Savda which is a part of Godavari Foundaiton.">
         <meta name="author" content="">
@@ -26,7 +26,55 @@
         <link href="{{ url_for('static', filename='css/colors.css')}}" rel="stylesheet">
         <!-- light box gallery --> 
         <link href="{{ url_for('static', filename='css/lightbox.css') }}" rel="stylesheet">
-        </head>
+        <style>
+            /* Base page styling */
+            body { font-family: sans-serif; padding: 20px; }
+
+            /* Modal styling */
+            .modal-overlay {
+                  display: none;
+                  position: fixed;
+                  top: 0; left: 0; width: 100%; height: 100%;
+                  background: rgba(0, 0, 0, 0.6);
+                  z-index: 1000;
+                  justify-content: center;
+                  align-items: center;
+            }
+            .modal-content {
+                  background: #fff;
+                  padding: 20px;
+                  border-radius: 8px;
+                  position: relative;
+                  max-width: 650px;
+                  text-align: center;
+                  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+            .close-btn {
+                  position: absolute;
+                  top: 10px;
+                  right: 15px;
+                  cursor: pointer;
+                  font-size: 24px;
+                  font-weight: bold;
+                  color: #666;
+                  line-height: 1;
+            }
+            .close-btn:hover { color: #000; }
+            .ad-banner {
+                  max-width: 100%; height: auto;
+                  border-radius: 4px;
+                  margin: 15px 0;
+                  transition: opacity 0.2s;
+            }
+            .ad-banner:hover { opacity: 0.9; }
+            .ad-link {
+                  display: inline-block;
+                  font-size: 18px; color: #007BFF;
+                  text-decoration: none; font-weight: bold;
+            }
+            .ad-link:hover { text-decoration: underline; }
+         </style>
+      </head>
 <body>
    
     <header class="header" id="top">
@@ -181,6 +229,28 @@
        </div>
      </div>
      <!-- end footer -->
+      <!-- ad modal -->
+     <div id="adModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAd()">&times;</span>
+            <a href="{{ ad.target_link }}" target="_blank">
+                <img src="{{ url_for('static', filename='images/ad-banner.jpg') }}" alt="Advertisement" class="ad-banner">
+            </a>
+            <br>
+            <a href="{{ ad.target_link }}" target="_blank" class="ad-link">
+                Click here to register!
+            </a>
+        </div>
+     </div>
+     <script>
+        window.onload = function() {
+            document.getElementById("adModal").style.display = "flex";
+        };
+
+        function closeAd() {
+            document.getElementById("adModal").style.display = "none";
+        }
+     </script>
      
      <!-- Core JavaScript
         ================================================== -->
