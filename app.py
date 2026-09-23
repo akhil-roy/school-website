@@ -165,8 +165,8 @@ def delete_video(filename):
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER_VIDEO'], filename)
 
-@app.route('/documents')
-def documents(): 
+@app.route('/home')
+def home():
     return render_template('documents.html')
 
 @app.route('/contact')
