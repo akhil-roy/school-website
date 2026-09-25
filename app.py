@@ -71,6 +71,10 @@ def logout():
 
 @app.route('/')
 def index():
+    return redirect(url_for('home'))
+
+@app.route('/home')
+def home():
     return render_template('index.html')
 
 @app.route('/about')
@@ -166,7 +170,7 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER_VIDEO'], filename)
 
 @app.route('/school/home')
-def home():
+def schoolhome():
     return render_template('documents.html')
 
 @app.route('/contact')
